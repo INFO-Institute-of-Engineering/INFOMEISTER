@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INFOMEISTER | CSE Association - INFO Institute of Engineering</title>
+  <meta name="description" content="INFOMEISTER - Computer Science & Engineering Association of INFO Institute of Engineering. Explore events, news, team members, and more." />
+  <meta name="theme-color" content="#0f172a" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-slate-950 text-slate-100 font-body antialiased selection:bg-brand-500/30 selection:text-white">
+  <!-- =========================================================== -->
+  <!--  NAVBAR / HEADER                                            -->
+  <!-- =========================================================== -->
+  <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-sm bg-slate-950/70 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
+      <div class="flex items-center gap-3">
+        <!-- INFOMEISTER Logo -->
+        <div class="w-10 h-10 rounded-full overflow-hidden shadow-glow ring-2 ring-white/10">
+          <img src="assets/logo.png" alt="INFOMEISTER Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="w-full h-full bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center" style="display: none;">
+            <span class="font-extrabold text-white tracking-tight">IM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1 text-sm font-medium">
+        <a href="#hero" class="px-3 py-2 rounded-lg hover:bg-white/5 transition">Home</a>
+        <a href="#about" class="px-3 py-2 rounded-lg hover:bg-white/5 transition">About</a>
+        <a href="#events" class="px-3 py-2 rounded-lg hover:bg-white/5 transition">Events</a>
+        <a href="#news" class="px-3 py-2 rounded-lg hover:bg-white/5 transition">News</a>
+        <a href="#team" class="px-3 py-2 rounded-lg hover:bg-white/5 transition">Team</a>
+        <a href="#map" class="px-3 py-2 rounded-lg hover:bg-white/5 transition">Campus</a>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <button id="mobileMenuBtn" aria-label="Toggle navigation" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500/60">
+        <svg id="hamburgerIcon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+    </div>
+    <!-- Mobile Nav Panel -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/5 bg-slate-900/90 backdrop-blur-sm">
+      <nav class="flex flex-col px-4 py-3 space-y-1 text-sm font-medium">
+        <a href="#hero" class="px-3 py-2 rounded-lg hover:bg-white/5">Home</a>
+        <a href="#about" class="px-3 py-2 rounded-lg hover:bg-white/5">About</a>
+        <a href="#events" class="px-3 py-2 rounded-lg hover:bg-white/5">Events</a>
+        <a href="#news" class="px-3 py-2 rounded-lg hover:bg-white/5">News</a>
+        <a href="#team" class="px-3 py-2 rounded-lg hover:bg-white/5">Team</a>
+        <a href="#map" class="px-3 py-2 rounded-lg hover:bg-white/5">Campus</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Spacer to offset fixed header -->
+  <div class="h-16" aria-hidden="true"></div>
+
+  <!-- =========================================================== -->
+  <!--  HERO / SPLASH CAROUSEL                                     -->
+  <!-- =========================================================== -->
+  <section id="hero" class="relative min-h-[90vh] flex flex-col justify-center overflow-hidden">
+    <!-- Decorative Grid Background -->
+    <div class="absolute inset-0 opacity-40 pointer-events-none bg-grid bg-[size:60px_60px]"></div>
+    <div class="absolute inset-0 pointer-events-none bg-radial-fade"></div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+      <div class="flex flex-col lg:flex-row lg:items-center gap-10">
+        <!-- Headline / Intro -->
+        <div class="max-w-xl space-y-6 fade-in">
+          <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.1] bg-clip-text text-transparent bg-gradient-to-b from-white via-brand-200 to-brand-500">
+            Empowering Innovation & Technical Excellence
+          </h1>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+            INFOMEISTER, the Computer Science & Engineering Association of INFO Institute of Engineering, is a student-driven platform fostering collaborative learning, cutting-edge research, and transformative technology initiatives.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#events" class="group inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-500 font-semibold shadow-glow transition">
+              Explore Events
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#team" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 font-semibold text-white/90 transition ring-1 ring-white/10">
+              Meet the Team
+            </a>
+          </div>
+        </div>
+
+        <!-- Carousel Wrapper -->
+        <div class="flex-1 w-full fade-in">
+          <div class="relative">
+            <!-- Image Container with Link -->
+            <div id="imageContainer" class="w-full max-w-md mx-auto" aria-label="Featured image display">
+              <a href="https://hackathon.infomeister.in" target="_blank" rel="noopener noreferrer" class="block group">
+                <img src="Infomeister - trisquadathon Hackathon.jpg" alt="Hackathon Event Banner" class="aspect-[4/5] bg-gradient-to-br from-slate-800/60 to-slate-900/60 rounded-2xl border border-white/10 object-cover w-full h-auto transition group-hover:scale-105 cursor-pointer" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subtle gradient overlay bottom -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none"></div>
+  </section>
+
+  <!-- =========================================================== -->
+  <!--  ABOUT SECTION                                              -->
+  <!-- =========================================================== -->
+  <section id="about" class="relative py-24 md:py-28">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950"></div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">About <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-brand-200">INFOMEISTER</span></h2>
+        <p class="text-slate-300 leading-relaxed text-lg">We are the CSE Association of INFO Institute of Engineering, dedicated to nurturing a culture of innovation, research, and student leadership. Through curated workshops, hackathons, peer-learning cohorts, and industry collaborations, we empower our members to master emerging technologies and build solutions with real-world impact.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/40 transition shadow-glow/10">
+          <h3 class="font-semibold mb-2 text-brand-300">Mission</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">Ignite curiosity and enable students to develop advanced technical and leadership skills through a synergy of academics, research, community, and open innovation.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/40 transition">
+          <h3 class="font-semibold mb-2 text-brand-300">Vision</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">Cultivate a globally competitive community of computing professionals contributing meaningful solutions to society and industry.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/40 transition">
+          <h3 class="font-semibold mb-2 text-brand-300">Values</h3>
+          <p class="text-sm text-slate-300 leading-relaxed">Collaboration, integrity, lifelong learning, inclusivity, sustainability, and excellence in engineering practice and ethics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== -->
+  <!--  EVENTS SECTION                                             -->
+  <!-- =========================================================== -->
+  <section id="events" class="relative py-24 md:py-28">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"></div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <div class="max-w-2xl">
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Flagship <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-brand-200">Events</span></h2>
+          <p class="text-slate-300 leading-relaxed">We organize a diverse range of academic and industry-aligned programs to sharpen practical skills and foster networking.</p>
+        </div>
+        <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-400/40 transition">Event Calendar →</a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Event Card Template -->
+        <div class="group relative p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/50 hover:shadow-glow transition overflow-hidden">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.25),transparent_70%)]"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 ring-2 ring-white/10 shadow-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Hackathons</h3>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Intensive 24–48 hour product sprints emphasizing real-world problem solving, collaboration & innovation.</p>
+          <div class="mt-4 text-xs text-brand-300 font-medium">Quarterly</div>
+        </div>
+
+        <div class="group relative p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/50 hover:shadow-glow transition overflow-hidden">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.25),transparent_70%)]"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 ring-2 ring-white/10 shadow-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 4h18M4 8h16l-1 12H5L4 8zM10 12h4"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Workshops</h3>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Hands-on sessions on AI, Cloud, Cybersecurity, DevOps, Data Engineering and more.</p>
+          <div class="mt-4 text-xs text-brand-300 font-medium">Monthly</div>
+        </div>
+
+        <div class="group relative p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/50 hover:shadow-glow transition overflow-hidden">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.25),transparent_70%)]"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 ring-2 ring-white/10 shadow-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8 17l4 4 4-4M12 12v9M7 9a5 5 0 1110 0v3H7V9z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Industry Talks</h3>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Guest sessions featuring engineers, founders, alumni & research professionals.</p>
+          <div class="mt-4 text-xs text-brand-300 font-medium">Bi-Monthly</div>
+        </div>
+
+        <div class="group relative p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/50 hover:shadow-glow transition overflow-hidden">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.25),transparent_70%)]"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 ring-2 ring-white/10 shadow-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Coding Cohorts</h3>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Structured peer learning groups exploring algorithms, systems, and open-source.</p>
+          <div class="mt-4 text-xs text-brand-300 font-medium">Ongoing</div>
+        </div>
+
+        <div class="group relative p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/50 hover:shadow-glow transition overflow-hidden">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.25),transparent_70%)]"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 ring-2 ring-white/10 shadow-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16v4H4zM4 12h16v8H4z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Research Forums</h3>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Paper review circles & applied innovation incubators.</p>
+          <div class="mt-4 text-xs text-brand-300 font-medium">Seasonal</div>
+        </div>
+
+        <div class="group relative p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/50 hover:shadow-glow transition overflow-hidden">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.25),transparent_70%)]"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 ring-2 ring-white/10 shadow-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 3h18M5 7h14l-1 14H6L5 7z"/></svg>
+            </span>
+            <h3 class="font-semibold text-lg">Product Showcases</h3>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Demo days & expo style engagements for prototypes & MVPs.</p>
+          <div class="mt-4 text-xs text-brand-300 font-medium">Annual</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== -->
+  <!--  NEWS SECTION                                                -->
+  <!-- =========================================================== -->
+  <section id="news" class="relative py-24 md:py-28">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950 via-slate-900/70 to-slate-950"></div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Latest <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-brand-200">News & Updates</span></h2>
+        <p class="text-slate-300 leading-relaxed">Announcements, achievements, and notable milestones from our vibrant community.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- News Card Template -->
+        <article class="group relative flex flex-col p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/40 transition overflow-hidden">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.22),transparent_75%)]"></div>
+          <h3 class="font-semibold text-lg mb-2 line-clamp-2">Team Secures Top 3 in Regional HackFest</h3>
+          <p class="text-sm text-slate-300 leading-relaxed line-clamp-4">Our machine learning enthusiasts built an AI-driven campus resource assistant and earned recognition for system robustness, efficiency, and user-centered design.</p>
+          <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+            <span>Aug 2025</span>
+            <a href="#" class="text-brand-300 hover:text-brand-200">Read →</a>
+          </div>
+        </article>
+        <article class="group relative flex flex-col p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/40 transition overflow-hidden">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.22),transparent_75%)]"></div>
+          <h3 class="font-semibold text-lg mb-2 line-clamp-2">Cloud-Native Bootcamp Launched</h3>
+          <p class="text-sm text-slate-300 leading-relaxed line-clamp-4">A 6-week immersive program covering containers, microservices, orchestration, and DevOps pipelines with hands-on labs.</p>
+          <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+            <span>Jul 2025</span>
+            <a href="#" class="text-brand-300 hover:text-brand-200">Read →</a>
+          </div>
+        </article>
+        <article class="group relative flex flex-col p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 hover:border-brand-400/40 transition overflow-hidden">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.22),transparent_75%)]"></div>
+          <h3 class="font-semibold text-lg mb-2 line-clamp-2">Open Source Contribution Drive</h3>
+          <p class="text-sm text-slate-300 leading-relaxed line-clamp-4">Students collaborated on issue triage, documentation improvements, and feature patches for community repositories.</p>
+          <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+            <span>Jun 2025</span>
+            <a href="#" class="text-brand-300 hover:text-brand-200">Read →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== -->
+  <!--  TEAM SECTION                                               -->
+  <!-- =========================================================== -->
+  <section id="team" class="relative py-24 md:py-28">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"></div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="mb-12 max-w-3xl">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 flex items-center gap-3">Meet the <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-brand-200">Core Team</span></h2>
+        <p class="text-slate-300 leading-relaxed">A multidisciplinary group of passionate learners, builders, researchers, designers & community organizers.</p>
+      </div>
+
+      <!-- Team Grid (30 Members Placeholder) -->
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6" id="teamGrid">
+        <!-- Template: We'll insert via JS for maintainability (array of objects) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== -->
+  <!--  MAP SECTION                                                -->
+  <!-- =========================================================== -->
+  <section id="map" class="relative py-24 md:py-28">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950 via-slate-900/70 to-slate-950"></div>
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="max-w-2xl mb-10">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Campus <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-brand-200">Location</span></h2>
+        <p class="text-slate-300 leading-relaxed">Find INFO Institute of Engineering on the map. Visit us to explore our labs, innovation spaces & collaborative learning zones.</p>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-white/10 shadow-glow aspect-[16/9] bg-slate-800/40">
+        <!-- Replace src with official Google Maps embed for precise location. -->
+        <iframe title="INFO Institute of Engineering Location" aria-label="Google Map showing the location of INFO Institute of Engineering" class="w-full h-full" style="border:0;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.428326716837!2d76.984983874611!3d11.084933189082688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8590189a4aebd%3A0xdb2a76d85ee5115b!2sINFO%20Institute%20of%20Engineering!5e0!3m2!1sen!2sin!4v1695472800000"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== -->
+  <!--  FOOTER                                                     -->
+  <!-- =========================================================== -->
+  <footer class="relative border-t border-white/10 bg-slate-950/90 backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-14 grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-white/10">
+            <img src="assets/logo.png" alt="INFOMEISTER Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="w-full h-full bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center" style="display: none;">
+              <span class="font-extrabold">IM</span>
+            </div>
+          </div>
+          <span class="font-bold tracking-wide">INFOMEISTER</span>
+        </div>
+        <p class="text-sm text-slate-400 leading-relaxed">The CSE Association at INFO Institute of Engineering — cultivating excellence, innovation & community leadership in computing.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-8 md:col-span-2">
+        <div>
+          <h4 class="font-semibold mb-3 text-slate-200">Explore</h4>
+            <ul class="space-y-2 text-sm text-slate-400">
+              <li><a class="hover:text-brand-300" href="#about">About</a></li>
+              <li><a class="hover:text-brand-300" href="#events">Events</a></li>
+              <li><a class="hover:text-brand-300" href="#news">News</a></li>
+              <li><a class="hover:text-brand-300" href="#team">Team</a></li>
+              <li><a class="hover:text-brand-300" href="#map">Campus</a></li>
+            </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3 text-slate-200">Connect</h4>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li><a href="#" class="hover:text-brand-300">LinkedIn</a></li>
+            <li><a href="#" class="hover:text-brand-300">Instagram</a></li>
+            <li><a href="#" class="hover:text-brand-300">GitHub</a></li>
+            <li><a href="mailto:info@example.com" class="hover:text-brand-300">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/5 py-6 text-center text-xs text-slate-500">
+      <p>© <span id="year"></span> INFOMEISTER • INFO Institute of Engineering. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" aria-label="Back to top" class="fixed bottom-6 right-6 w-12 h-12 hidden items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow ring-2 ring-white/10 hover:from-brand-400 hover:to-brand-600 transition">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg>
+  </button>
+
+  <!-- External JavaScript for all interactive functionality -->
+  <script src="script.js"></script>
+</body>
+</html>
