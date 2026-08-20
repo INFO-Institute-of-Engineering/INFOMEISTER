@@ -1,29 +1,23 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Image as ImageIcon, ZoomIn } from 'lucide-react';
+import { Image as ImageIcon } from 'lucide-react';
+import { DynamicPlaceholder } from '@/components/dynamic-placeholder';
 
-const GalleryPlaceholder = ({ index, size = 'default' }) => (
+const GalleryPlaceholder = ({ index, src, alt }: { index: number; src?: string; alt?: string }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.9 }}
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true, amount: 0.2 }}
     transition={{ duration: 0.52, delay: index * 0.05 }}
     whileHover={{ scale: 1.02 }}
-    className={`group glass rounded-2xl border border-white/10 overflow-hidden flex flex-col items-center justify-center transition-all duration-300 hover:border-cyan-300/40 hover:shadow-[0_0_35px_rgba(34,211,238,0.16)] cursor-pointer relative ${
-      size === 'large' ? 'aspect-video lg:col-span-2' : 'aspect-square'
-    }`}
+    className="group glass relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 transition-all duration-300 hover:border-cyan-300/40 hover:shadow-[0_0_35px_rgba(34,211,238,0.16)]"
   >
-    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-blue-500/0 group-hover:from-cyan-500/10 group-hover:to-blue-500/10 transition duration-300" />
-    <div className="relative z-10 flex flex-col items-center justify-center gap-3 text-slate-400">
-      <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 2, repeat: Infinity }}>
-        <ImageIcon size={48} className="opacity-40 group-hover:opacity-60 transition" />
-      </motion.div>
-      <p className="text-sm font-semibold text-slate-400">Photo coming soon</p>
-      <motion.div animate={{ opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity }} className="text-cyan-300/50">
-        <ZoomIn size={20} />
-      </motion.div>
-    </div>
+    {src ? (
+      <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+    ) : (
+      <DynamicPlaceholder title="Photo coming soon" />
+    )}
   </motion.div>
 );
 
@@ -53,16 +47,21 @@ export function GallerySection() {
         </p>
       </motion.div>
 
-      {/* Masonry Gallery */}
-      <div className="relative z-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <GalleryPlaceholder index={0} size="large" />
-        <GalleryPlaceholder index={1} />
-        <GalleryPlaceholder index={2} />
-        <GalleryPlaceholder index={3} size="large" />
-        <GalleryPlaceholder index={4} />
-        <GalleryPlaceholder index={5} />
-        <GalleryPlaceholder index={6} />
-        <GalleryPlaceholder index={7} size="large" />
+      <div className="relative z-10 space-y-4">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <GalleryPlaceholder index={0} src="/events-moments-first.jpg" alt="INFOMEISTER team and guests at an event" />
+          <GalleryPlaceholder index={3} src="/events-moments-fourth.jpg" alt="INFOMEISTER team at an event" />
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <GalleryPlaceholder index={1} src="/events-moments-second.jpg" alt="INFOMEISTER event moment" />
+          <GalleryPlaceholder index={2} src="/events-moments-third.jpg" alt="INFOMEISTER students collaborating on a project" />
+          <GalleryPlaceholder index={4} src="/events-moments-fifth.jpg" alt="INFOMEISTER students attending a classroom session" />
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <GalleryPlaceholder index={5} src="/events-moments-sixth.jpg" alt="INFOMEISTER students in a computer lab" />
+          <GalleryPlaceholder index={6} src="/events-moments-seventh.jpg" alt="INFOMEISTER students attending an event" />
+          <GalleryPlaceholder index={7} src="/events-moments-eighth.jpg" alt="INFOMEISTER speaker addressing an audience" />
+        </div>
       </div>
     </section>
   );

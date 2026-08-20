@@ -10,15 +10,6 @@ export type EventItem = {
 
 export const events: EventItem[] = [
   {
-    id: 'trisquadathon-2',
-    title: 'Trisquadathon 2.0',
-    date: '2026',
-    month: 'Coming Soon',
-    description: 'A more competitive, larger, and more impactful hackathon experience built for ambitious builders.',
-    category: 'Hackathon',
-    featured: true,
-  },
-  {
     id: 'ai-bootcamp',
     title: 'AI Foundations Bootcamp',
     date: '18 Sep',

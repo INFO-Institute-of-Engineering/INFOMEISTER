@@ -87,27 +87,35 @@ export function HeroSection() {
           transition={{ duration: 0.9, delay: 0.1 }}
           className="relative z-10"
         >
-          <div className="glass neon-border relative overflow-hidden rounded-[2rem] p-3 sm:p-4">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(37,99,235,0.2),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(56,189,248,0.2),transparent_30%)]" />
-            <div className="relative rounded-[1.6rem] border border-white/10 bg-[#0b1020]/80 p-3 sm:p-4 shadow-[0_0_30px_rgba(37,99,235,0.12)]">
-              <div className="mb-4 flex items-center gap-2">
-                <span className="h-3 w-3 rounded-full bg-red-400 shadow-[0_0_12px_rgba(248,113,113,0.7)]" />
-                <span className="h-3 w-3 rounded-full bg-yellow-400 shadow-[0_0_12px_rgba(251,191,36,0.7)]" />
-                <span className="h-3 w-3 rounded-full bg-green-400 shadow-[0_0_12px_rgba(74,222,128,0.7)]" />
+          <div className="relative mx-auto w-full max-w-[31rem] overflow-hidden rounded-[2.5rem] border border-cyan-200/30 bg-[#06101f]/90 p-2 shadow-[0_25px_80px_rgba(2,6,23,0.65),0_0_55px_rgba(34,211,238,0.2)] sm:p-3">
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(125,211,252,0.18),transparent_28%,transparent_70%,rgba(124,58,237,0.2))]" />
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#081426] p-4 sm:p-5">
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(125,211,252,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(125,211,252,0.055)_1px,transparent_1px)] bg-[size:30px_30px]" />
+              <div className="relative flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center gap-2.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(103,232,249,0.9)]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.28em] text-cyan-100">INFOMEISTER</span>
+                </div>
+                <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-slate-500">Since 2025</span>
               </div>
 
-              <div className="relative aspect-[5/6] w-full overflow-hidden rounded-[1.4rem] border border-blue-400/20 bg-[radial-gradient(circle_at_center,_rgba(37,99,235,0.26),_rgba(9,12,18,1)_58%)] sm:aspect-[4/4.5] md:aspect-[4/5] shadow-[inset_0_0_30px_rgba(96,165,250,0.08)]">
-                <div className="absolute inset-0 animate-drift bg-[radial-gradient(circle_at_30%_30%,white,transparent_25%),radial-gradient(circle_at_70%_20%,rgba(56,189,248,0.8),transparent_20%)] opacity-80" />
-
-                <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative mt-4 aspect-[5/6] w-full overflow-hidden rounded-[1.6rem] border border-cyan-200/25 bg-[radial-gradient(circle_at_center,_rgba(37,99,235,0.34),_rgba(3,7,18,1)_64%)] shadow-[inset_0_0_45px_rgba(96,165,250,0.16)] sm:aspect-[4/4.5] md:aspect-[4/5]">
+                <div className="absolute inset-4 rounded-[1.2rem] border border-cyan-100/15" />
+                <div className="absolute left-7 top-7 h-10 w-10 border-l border-t border-cyan-200/60" />
+                <div className="absolute bottom-7 right-7 h-10 w-10 border-b border-r border-cyan-200/60" />
+                <div className="absolute inset-0 animate-drift bg-[radial-gradient(circle_at_30%_30%,white,transparent_25%),radial-gradient(circle_at_70%_20%,rgba(56,189,248,0.8),transparent_20%)] opacity-60" />
+                <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-5">
                   <img
                     src="/Info%20logo%20dark%20bblue.png"
                     alt="INFOMEISTER logo"
-                    className="h-[90%] w-[90%] object-contain drop-shadow-[0_0_34px_rgba(96,165,250,0.7)]"
+                    className="h-full w-full object-contain drop-shadow-[0_0_42px_rgba(96,165,250,0.86)]"
                   />
                 </div>
+              </div>
 
-
+              <div className="relative mt-4 flex items-center justify-between gap-4">
+                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400">United by passion</p>
+                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-cyan-200/80">Driven by excellence</p>
               </div>
             </div>
           </div>

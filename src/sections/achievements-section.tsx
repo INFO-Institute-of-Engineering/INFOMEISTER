@@ -1,13 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, Zap, BookOpen, Network } from 'lucide-react';
+import { Users, Zap, BookOpen, Network, type LucideIcon } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 
-const AnimatedCounter = ({ targetValue, duration = 2.5, suffix = '' }) => {
+const AnimatedCounter = ({ targetValue, duration = 2.5, suffix = '' }: { targetValue: number; duration?: number; suffix?: string }) => {
   const [count, setCount] = useState(0);
   const [inView, setInView] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,7 +53,7 @@ const AnimatedCounter = ({ targetValue, duration = 2.5, suffix = '' }) => {
   );
 };
 
-const AchievementCard = ({ icon: Icon, label, value, suffix, index }) => (
+const AchievementCard = ({ icon: Icon, label, value, suffix, index }: { icon: LucideIcon; label: string; value: number; suffix: string; index: number }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}

@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Brain, Code, Zap, Users, Database, Shield } from 'lucide-react';
+import { Brain, Code, Zap, Users, Database, Shield, type LucideIcon } from 'lucide-react';
 
-const DomainCard = ({ icon: Icon, title, description, index }) => (
+const DomainCard = ({ icon: Icon, title, description, index }: { icon: LucideIcon; title: string; description: string; index: number }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}

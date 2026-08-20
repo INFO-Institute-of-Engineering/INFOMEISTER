@@ -74,47 +74,30 @@ export function ContactSection() {
         </motion.div>
       </div>
 
-      <motion.form
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.52, delay: 0.18 }}
         className="relative z-10 glass rounded-3xl border border-white/10 p-8 mb-16 neon-border"
       >
-        <h3 className="text-2xl font-black text-white mb-6">Send us a Message</h3>
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="mb-6 flex items-center gap-3">
+          <MapPin className="text-cyan-200" size={24} />
           <div>
-            <label className="block text-sm font-semibold text-slate-300 mb-2">Name</label>
-            <input
-              type="text"
-              placeholder="Your name"
-              className="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-300/40 transition duration-300"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-semibold text-slate-300 mb-2">Email</label>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-300/40 transition duration-300"
-            />
+            <h3 className="text-2xl font-black text-white">Find Us</h3>
+            <p className="mt-1 text-sm text-slate-300">Info Institute of Engineering, Coimbatore, Tamil Nadu</p>
           </div>
         </div>
-        <div className="mt-6">
-          <label className="block text-sm font-semibold text-slate-300 mb-2">Message</label>
-          <textarea
-            placeholder="Tell us about your interest..."
-            rows={5}
-            className="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-300/40 transition duration-300"
+        <div className="overflow-hidden rounded-2xl border border-white/10">
+          <iframe
+            title="Live location of Info Institute of Engineering"
+            src="https://www.google.com/maps?q=Info+Institute+of+Engineering,+Coimbatore,+Tamil+Nadu&output=embed"
+            className="h-[360px] w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
-        <button
-          type="submit"
-          className="mt-6 px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-black rounded-xl hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition duration-300 transform hover:scale-105"
-        >
-          Send Message
-        </button>
-      </motion.form>
+      </motion.div>
 
       {/* Footer */}
       <motion.footer
@@ -159,7 +142,7 @@ export function ContactSection() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10">
-          <p className="text-sm text-slate-400">© 2024 INFOMEISTER. All rights reserved.</p>
+          <p className="text-sm text-slate-400">© 2026 INFOMEISTER. All rights reserved.</p>
           <div className="flex gap-4">
             <a href="#" className="text-slate-400 hover:text-cyan-300 transition">
               <Linkedin size={20} />

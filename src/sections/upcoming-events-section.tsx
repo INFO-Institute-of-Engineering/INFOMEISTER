@@ -1,8 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CalendarDays, Mic, Presentation, Users, Video, Wrench } from 'lucide-react';import { useState } from 'react';
-const EventCard = ({ title, tag, date, icon: Icon, detail, index }) => (
+import { CalendarDays, Mic, Presentation, Users, Video, Wrench, X, ArrowUpRight, type LucideIcon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
+type Event = { title: string; tag: string; date: string; icon: LucideIcon; detail: string };
+
+const EventCard = ({ title, tag, date, icon: Icon, detail, index }: Event & { index: number }) => (
   <motion.article
     key={title}
     initial={{ opacity: 0, y: 18 }}
@@ -20,7 +24,20 @@ const EventCard = ({ title, tag, date, icon: Icon, detail, index }) => (
       </div>
     </div>
     <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-cyan-200/90">{tag}</div>
-    <h3 className="mt-2 text-2xl font-black tracking-[-0.02em] text-white">{title}</h3>
+    <div className="mt-2 flex items-start justify-between gap-3">
+      <h3 className="text-2xl font-black tracking-[-0.02em] text-white">{title}</h3>
+      {title === 'Trisquadathon 2.0' && (
+        <a
+          href="https://trisquadathon.infomeister.co.in/"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Open Trisquadathon 2.0 website"
+          className="shrink-0 rounded-xl border border-cyan-300/30 p-2 text-cyan-200 transition hover:bg-cyan-300/15 hover:text-white"
+        >
+          <ArrowUpRight size={17} />
+        </a>
+      )}
+    </div>
     <p className="mt-3 text-sm leading-relaxed text-slate-300">{detail}</p>
   </motion.article>
 );
@@ -29,15 +46,15 @@ const events = [
   {
     title: 'Talkathon',
     tag: 'Flagship Speaking Arena',
-    date: '12 SEP',
+    date: '21 AUG 2026',
     icon: Mic,
     detail:
       'A high-energy forum where students pitch ideas, debate innovation, and sharpen communication under mentorship.',
   },
   {
-    title: 'Trisqudathon 2.0',
-    tag: 'Team Build Sprint',
-    date: '20 SEP',
+    title: 'Trisquadathon 2.0',
+    tag: 'Coming Soon',
+    date: 'COMING SOON',
     icon: Wrench,
     detail:
       'An upgraded hack challenge focused on rapid prototyping, practical execution, and solution storytelling.',
@@ -77,15 +94,28 @@ const events = [
 ];
 
 export function UpcomingEventsSection() {
-  const [selectedMonth, setSelectedMonth] = useState(null);
+  const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
+  const [activeEventIndex, setActiveEventIndex] = useState(0);
+  const [showEventPopup, setShowEventPopup] = useState(true);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveEventIndex((currentIndex) => (currentIndex + 1) % events.length);
+      setShowEventPopup(true);
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const activeEvent = events[activeEventIndex];
+  const ActiveEventIcon = activeEvent?.icon;
 
   // Extract unique months from events
-  const eventMonths = [...new Set(events.map(e => {
-    const monthStr = e.date.split(' ')[1];
-    return monthStr;
-  }))];
+  const eventMonths = [...new Set(events
+    .map((event) => event.date.match(/\b[A-Z]{3}\b/)?.[0])
+    .filter((month): month is string => Boolean(month)))];
 
-  const monthCounts = eventMonths.reduce((acc, month) => {
+  const monthCounts = eventMonths.reduce<Record<string, number>>((acc, month) => {
     const count = events.filter(e => e.date.includes(month)).length;
     acc[month] = count;
     return acc;
@@ -98,6 +128,64 @@ export function UpcomingEventsSection() {
 
   return (
     <section id="events" className="relative mx-auto max-w-7xl px-4 pb-24 pt-8 md:px-8 md:pt-10">
+      {showEventPopup && activeEvent && (
+        <motion.aside
+          key={activeEvent.title}
+          initial={{ opacity: 0, x: 24, y: 12 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          exit={{ opacity: 0, x: 24 }}
+          drag
+          dragMomentum={false}
+          whileDrag={{ scale: 1.02, cursor: 'grabbing' }}
+          className="pointer-events-auto fixed bottom-5 right-4 z-[100] hidden w-[min(23rem,calc(100vw-2rem))] cursor-grab touch-none overflow-hidden rounded-3xl border border-cyan-200/45 bg-[#071326]/[98%] shadow-[0_16px_55px_rgba(2,6,23,0.8),0_0_40px_rgba(34,211,238,0.35)] backdrop-blur-xl sm:block sm:right-6"
+          role="status"
+          aria-live="polite"
+        >
+          <div className="h-1 bg-gradient-to-r from-cyan-300 via-blue-500 to-violet-500" />
+          <div className="p-5">
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-200/35 bg-gradient-to-br from-cyan-300/20 to-blue-500/20 text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.3)]">
+                  {ActiveEventIcon && <ActiveEventIcon size={21} />}
+                </div>
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">Now announcing</p>
+                  <p className="mt-1 text-xs font-medium text-slate-400">INFOMEISTER events</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowEventPopup(false)}
+                aria-label="Close event notification"
+                className="rounded-full p-1.5 text-slate-400 transition hover:bg-white/10 hover:text-white"
+              >
+                <X size={17} />
+              </button>
+            </div>
+            <div className="mt-5 flex items-end justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-blue-200/80">{activeEvent.tag}</p>
+                <h3 className="mt-1 truncate text-2xl font-black tracking-[-0.03em] text-white">{activeEvent.title}</h3>
+              </div>
+              <div className="shrink-0 rounded-xl border border-cyan-200/30 bg-cyan-300/10 px-3 py-2 text-right">
+                <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-cyan-200/70">Date</p>
+                <p className="mt-0.5 text-xs font-black text-cyan-50">{activeEvent.date}</p>
+              </div>
+            </div>
+            <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-slate-300">{activeEvent.detail}</p>
+            <div className="mt-4 h-1 overflow-hidden rounded-full bg-white/10">
+              <motion.div
+                key={`${activeEvent.title}-progress`}
+                initial={{ width: '0%' }}
+                animate={{ width: '100%' }}
+                transition={{ duration: 5, ease: 'linear' }}
+                className="h-full rounded-full bg-gradient-to-r from-cyan-300 to-blue-500"
+              />
+            </div>
+          </div>
+        </motion.aside>
+      )}
+
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(circle_at_20%_20%,_rgba(14,165,233,0.2),_transparent_45%),radial-gradient(circle_at_85%_5%,_rgba(59,130,246,0.2),_transparent_34%)]" />
 
       <motion.div

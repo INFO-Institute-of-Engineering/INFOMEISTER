@@ -4,7 +4,10 @@ import { motion } from 'framer-motion';
 import { Users, Linkedin } from 'lucide-react';
 import { useState } from 'react';
 
-const boardData = {
+type BoardMember = { name: string; category: string };
+type BoardYearData = Record<string, BoardMember[]>;
+
+const boardData: Record<number, BoardYearData> = {
   2026: {
     President: [{ name: 'Srivarshini V', category: 'leadership' }],
     'President Special Aides': [
@@ -84,6 +87,12 @@ const boardData = {
   },
   2025: {
     President: [{ name: 'Gururaja Y', category: 'leadership' }],
+    'President Special Aides': [
+      { name: 'Aswin Raj', category: 'leadership' },
+      { name: 'Logeshwari A', category: 'leadership' },
+      { name: 'Sri Dharshana N', category: 'leadership' },
+      { name: 'Vaitheeshwaran S', category: 'leadership' },
+    ],
     'Vice President': [{ name: 'Thamu S', category: 'leadership' }],
     Secretary: [{ name: 'Srivarshini V', category: 'leadership' }],
     'Joint Secretary': [{ name: 'Harrshini S', category: 'leadership' }],
@@ -120,17 +129,74 @@ const boardData = {
       { name: 'Yeshwanth V', category: 'media' },
       { name: 'Ajesh A', category: 'media' },
     ],
-    'President Special Aides': [
-      { name: 'Aswin Raj', category: 'leadership' },
-      { name: 'Logeshwari A', category: 'leadership' },
-      { name: 'Sri Dharshana N', category: 'leadership' },
-      { name: 'Vaitheeshwaran S', category: 'leadership' },
-    ],
     'Editorial Head': [{ name: 'Guhan E', category: 'creative' }],
   },
 };
 
-const MemberCard = ({ member, index }) => (
+const boardProfileImages2026: Record<string, string> = {
+  'Srivarshini V': '/sri varshini V.png',
+  'Ganga Sri S': '/ganga sri S.png',
+  'Kathirvelan M': '/kathirvelan M.png',
+  'Priyadharshini S': '/priyatharshini S.png',
+  'Naveen Bala R': '/naveen bala R.png',
+  'Priyadarshan S': '/priyadarshan  S.png',
+  'Ramesh M': '/ramesh M.png',
+  'Sai Sabari P': '/saisabari P.png',
+  'H R Shanjay Krishna': '/shanjay krishna HR.png',
+  'Viveka S': '/viveka S.png',
+  'Kadher Batsha S': '/kadher batsha S.png',
+  'Sivanesh R': '/sivanesh R.png',
+  'Nithish R': '/nithishR-new.png',
+  'Dinesh Kumar M M': '/dinesh kumar MM.png',
+  'Sharan N K': '/saran NK.png',
+  'Thamu S': '/thamu S.png',
+  'Induja V': '/induja V.png',
+  Leviya: '/leviya P.png',
+  Moulisha: '/moulisha R.png',
+  'V M Balamurugan': '/bala murugan VM.png',
+  'Srihari J': '/sri hari J.png',
+  'Nhivedha E': '/nhivedha E.png',
+  'Vikash K': '/vikash K.png',
+  Rithick: '/rithick P.png',
+  'Ruthra V': '/ruthra V.png',
+  'Ramya Krishnan': '/ramya krishnan M.png',
+  Arikarasudhan: '/arikarasudhan M.png',
+  'Harikrishnan M': '/hari krishnan M.png',
+  'Udhaya Thara K': '/udhaya thara K.png',
+  'S A Kowshya': '/kowshya SA.png',
+  'Madhumitha M': '/madhumitha M.png',
+  'V Annapoorani': '/anna poorani V.png',
+  'Sivagnana Subha': '/sivagnana suba G.png',
+  'Gowtham V': '/gowtham v.png',
+  'Ramesh P': '/ramesh P.png',
+  'Jeffrey A': '/jeffrey A.png',
+  'Suba Shree R': '/suba shree R.png',
+  'Manisha S': '/manisha S.png',
+  Sushma: '/sushma R.png',
+  'Vignesh A S': '/vignesh AS.png',
+  'Varadaraj K': '/varadaraj K.png',
+  'Abishek Joseph J': '/abhishek joseph J.png',
+  'Gurumanthesh S': '/gurumanthesh S.png',
+  'Akash S': '/akash S.png',
+  'Vinotha T': '/vinotha T.png',
+  'Anu M': '/anu M.png',
+  'Harrshini S': '/harshini S.png',
+};
+
+const boardProfileImages2025: Record<string, string> = {
+  'Thamu S': '/thamu S.png',
+  'Srivarshini V': '/sri varshini V.png',
+  'Harrshini S': '/harshini S.png',
+  'Gowtham V': '/gowtham v.png',
+  'Ramesh M': '/ramesh M.png',
+  'Kadher Batsha S': '/kadher batsha S.png',
+  'Priyadharshini S': '/priyatharshini S.png',
+  'Naveen Bala R': '/naveen bala R.png',
+  'Annapoorani V': '/anna poorani V.png',
+  'Sivagnana Subha G': '/sivagnana suba G.png',
+};
+
+const MemberCard = ({ member, index, image }: { member: BoardMember; index: number; image?: string }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.9 }}
     whileInView={{ opacity: 1, scale: 1 }}
@@ -138,8 +204,8 @@ const MemberCard = ({ member, index }) => (
     transition={{ duration: 0.3, delay: index * 0.03 }}
     className="glass rounded-2xl border border-white/10 p-4 text-center hover:border-cyan-300/40 transition duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.2)]"
   >
-    <div className="mx-auto h-16 w-16 rounded-full border-2 border-cyan-300/35 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 flex items-center justify-center text-2xl font-black text-cyan-200 mb-3">
-      {member.name.charAt(0)}
+    <div className="mx-auto h-16 w-16 overflow-hidden rounded-full border-2 border-cyan-200/60 bg-gradient-to-br from-cyan-100 via-white to-blue-200 shadow-[0_0_24px_rgba(34,211,238,0.22)] flex items-center justify-center text-2xl font-black text-cyan-700 mb-3">
+      {image ? <img src={image} alt={`${member.name} profile`} className="h-full w-full object-contain object-center mix-blend-multiply" /> : member.name.charAt(0)}
     </div>
     <h4 className="font-black text-white text-sm">{member.name}</h4>
     <div className="mt-2 flex justify-center">
@@ -150,7 +216,7 @@ const MemberCard = ({ member, index }) => (
   </motion.div>
 );
 
-const RoleSection = ({ roleName, members, index }) => (
+const RoleSection = ({ roleName, members, index, imageMap }: { roleName: string; members: BoardMember[]; index: number; imageMap: Record<string, string> }) => (
   <motion.div
     initial={{ opacity: 0, y: 10 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -163,7 +229,7 @@ const RoleSection = ({ roleName, members, index }) => (
     </h4>
     <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {members.map((member, idx) => (
-        <MemberCard key={member.name} member={member} index={idx} />
+        <MemberCard key={member.name} member={member} index={idx} image={imageMap?.[member.name]} />
       ))}
     </div>
   </motion.div>
@@ -257,7 +323,13 @@ export function ExecutiveBoardsArchiveSection() {
       ) : (
         <div className="relative z-10">
           {Object.entries(currentYearData).map(([roleName, members], idx) => (
-            <RoleSection key={roleName} roleName={roleName} members={members} index={idx} />
+            <RoleSection
+              key={roleName}
+              roleName={roleName}
+              members={members}
+              index={idx}
+              imageMap={selectedYear === 2026 ? boardProfileImages2026 : boardProfileImages2025}
+            />
           ))}
         </div>
       )}
