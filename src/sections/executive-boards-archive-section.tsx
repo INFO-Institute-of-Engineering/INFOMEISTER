@@ -205,7 +205,7 @@ const MemberCard = ({ member, index, image }: { member: BoardMember; index: numb
     transition={{ duration: 0.3, delay: index * 0.03 }}
     className="glass rounded-2xl border border-white/10 p-4 text-center hover:border-cyan-300/40 transition duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.2)]"
   >
-    <div className="mx-auto h-16 w-16 overflow-hidden rounded-full border-2 border-cyan-200/60 bg-gradient-to-br from-cyan-100 via-white to-blue-200 shadow-[0_0_24px_rgba(34,211,238,0.22)] flex items-center justify-center text-2xl font-black text-cyan-700 mb-3">
+    <div className="relative mx-auto h-16 w-16 overflow-hidden rounded-full border-2 border-cyan-200/60 bg-gradient-to-br from-cyan-100 via-white to-blue-200 shadow-[0_0_24px_rgba(34,211,238,0.22)] flex items-center justify-center text-2xl font-black text-cyan-700 mb-3">
       {image ? <Image src={image} alt={`${member.name} profile`} fill sizes="64px" className="object-contain object-center mix-blend-multiply" /> : member.name.charAt(0)}
     </div>
     <h4 className="font-black text-white text-sm">{member.name}</h4>

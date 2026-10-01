@@ -144,13 +144,13 @@ export function BackgroundSystem() {
       {/* ── 3-D scene ──────────────────────────────────────────────────── */}
       {showScene && (
         <div className="pointer-events-none fixed inset-0 -z-10">
-          <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 5], fov: 45 }}>
+          <Canvas dpr={1} camera={{ position: [0, 0, 5], fov: 45 }}>
             <color attach="background" args={['#05070F']} />
             <ambientLight intensity={0.8} />
             <pointLight position={[3, 2, 4]}   intensity={18} color="#60a5fa" />
             <pointLight position={[-3, -2, 2]} intensity={12} color="#38bdf8" />
             <OrbitalGlow />
-            <Stars radius={50} depth={30} count={1200} factor={3} saturation={0} fade speed={0.5} />
+            <Stars radius={50} depth={30} count={500} factor={2} saturation={0} fade speed={0.35} />
             <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.55} />
           </Canvas>
         </div>
