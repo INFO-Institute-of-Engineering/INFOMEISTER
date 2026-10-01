@@ -9,7 +9,6 @@ const banners = [
   { src: '/talkthon-banner.jpg.jpeg', alt: 'Talkathon event banner' },
   { src: '/sihawarness.jpeg', alt: 'Smart India Hackathon awareness workshop poster' },
   { src: '/sihIntAwarness.jpeg', alt: 'ITNT Tamil Nadu Technology Hub awareness programme poster' },
-  { src: '/newtri2.0banner.jpg.jpeg', alt: 'Trisquadathon 2.0 coming soon banner' },
   { src: '/2.png', alt: 'TechTalk 2.0 coming soon poster' },
 ];
 

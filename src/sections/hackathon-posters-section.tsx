@@ -22,11 +22,6 @@ const posters = [
     title: 'Trisquadathon 2.0',
   },
   {
-    src: '/tri2.0banner.jpg.jpeg',
-    alt: 'Trisquadathon 2.0 Banner Poster',
-    title: 'Trisquadathon 2.0',
-  },
-  {
     src: '/talkthon-banner.jpg.jpeg',
     alt: 'Talkathon Event Poster',
     title: 'Talkathon',
