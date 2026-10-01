@@ -1,0 +1,103 @@
+/* =====================================================================
+   INFOMEISTER STYLESHEET (styles.css)
+   ---------------------------------------------------------------------
+   This file contains custom CSS that supplements TailwindCSS utility
+   classes. Tailwind handles the majority of layout, spacing, color,
+   and typography. Here we keep:
+     1. Scrollbar customization
+     2. Reusable animations (fade-in, slide-up)
+     3. Utility helpers for hiding scrollbars on specific containers
+     4. Custom background patterns and effects
+     5. Any future bespoke CSS not covered by Tailwind utilities
+
+   NOTE: Keep this file lightweight; prefer Tailwind utility classes
+   for most design needs. All sections of this file are heavily
+   commented for clarity and maintainability.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. CUSTOM SCROLLBAR THEME (WebKit Browsers)
+   Provides a modern, minimal aesthetic that aligns with the dark theme.
+   --------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;                 /* Width of vertical scrollbar */
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;         /* Track color (matches page background) */
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#1e3a8a, #3b82f6); /* Branded gradient */
+  border-radius: 8px;                               /* Smooth pill shape */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(#2563eb, #60a5fa);    /* Brighter on hover */
+}
+
+/* ---------------------------------------------------------------------
+   2. ANIMATION UTILITIES
+   fade-in:   Basic opacity fade for subtle entrance.
+   slide-up:  Moves element upward slightly while fading in.
+   Add these classes to elements that should animate as they appear.
+   --------------------------------------------------------------------- */
+.fade-in {
+  animation: fadeIn 0.9s ease-in forwards;
+  opacity: 0;                   /* Start hidden until animation plays */
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+  opacity: 0;                   /* Hidden pre-animation */
+  transform: translateY(20px);  /* Start 20px below final position */
+}
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------------------------------------------------------------
+   3. HIDE SCROLLBAR (while keeping scroll functionality)
+   Applied to horizontal carousel container to create a clean UI.
+   --------------------------------------------------------------------- */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;                /* Chrome / Safari / Edge */
+}
+.no-scrollbar {
+  -ms-overflow-style: none;     /* IE & Edge */
+  scrollbar-width: none;        /* Firefox */
+}
+
+/* ---------------------------------------------------------------------
+   4. CUSTOM BACKGROUND PATTERNS
+   Supporting patterns that work with Tailwind's background utilities.
+   These are referenced in the JavaScript Tailwind config.
+   --------------------------------------------------------------------- */
+.bg-grid {
+  background-image: linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+}
+
+.bg-radial-fade {
+  background-image: radial-gradient(circle at 50% 50%, rgba(59,130,246,0.15), transparent 60%);
+}
+
+/* ---------------------------------------------------------------------
+   5. UTILITY OVERRIDES & ACCESSIBILITY
+   Additional focus styles and utility overrides for better UX.
+   --------------------------------------------------------------------- */
+/* Enhanced focus visibility for better accessibility */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Ensure proper text selection highlighting */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: white;
+}
