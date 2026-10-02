@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Mic, Users, type LucideIcon } from 'lucide-react';
+import Image from 'next/image';
 import { DynamicPlaceholder } from '@/components/dynamic-placeholder';
 
 const PlaceholderImage = ({ title, size = 'default', src, alt, index = 0, animated = false }: { title: string; size?: 'default' | 'large'; src?: string; alt?: string; index?: number; animated?: boolean }) => (
@@ -12,12 +13,12 @@ const PlaceholderImage = ({ title, size = 'default', src, alt, index = 0, animat
     animate={animated ? { y: [0, index % 2 === 0 ? -3 : 3, 0] } : undefined}
     transition={animated ? { duration: 0.5, delay: index * 0.07 } : { duration: 0.6 }}
     whileHover={animated ? { y: -7, scale: 1.025 } : undefined}
-    className={`rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/50 to-slate-800/30 flex flex-col items-center justify-center gap-4 backdrop-blur-sm hover:border-cyan-300/40 transition ${
+    className={`relative rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/50 to-slate-800/30 flex flex-col items-center justify-center gap-4 backdrop-blur-sm hover:border-cyan-300/40 transition ${
       size === 'large' ? 'aspect-video' : 'aspect-square'
     }`}
   >
     {src ? (
-      <motion.img src={src} alt={alt} className={`h-full w-full object-cover transition duration-700 ${animated ? 'group-hover:scale-110' : ''}`} />
+      <Image src={src!} alt={alt ?? ''} fill sizes={size === 'large' ? '(max-width: 640px) 100vw, 90vw' : '(max-width: 640px) 100vw, 25vw'} className={`object-cover transition duration-700 ${animated ? 'group-hover:scale-110' : ''}`} />
     ) : (
       <DynamicPlaceholder title={title} />
     )}

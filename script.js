@@ -194,10 +194,15 @@
 
   function setupBackToTop() {
     if (!backToTopBtn) return;
+    let frameId;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 600) backToTopBtn.classList.remove('hidden');
-      else backToTopBtn.classList.add('hidden');
-    });
+      if (frameId !== undefined) return;
+      frameId = window.requestAnimationFrame(() => {
+        if (window.scrollY > 600) backToTopBtn.classList.remove('hidden');
+        else backToTopBtn.classList.add('hidden');
+        frameId = undefined;
+      });
+    }, { passive: true });
     backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 

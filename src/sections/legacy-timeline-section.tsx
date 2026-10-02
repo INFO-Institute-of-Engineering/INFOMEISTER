@@ -102,14 +102,15 @@ const timelineEvents = [
   },
   {
     year: 2026,
-    title: 'Trisquadathon 2.0 Coming Soon',
+    title: 'Trisquadathon 2.0',
     description: 'Bigger. Better. More Competitive. More Innovative.',
     icon: Trophy,
     isUpcoming: true,
+    date: '29.10.2026',
   },
 ];
 
-const TimelineNode = ({ event, index, isLast }: { event: { year: number; title: string; description: string; icon: LucideIcon; isUpcoming?: boolean }; index: number; isLast: boolean }) => {
+const TimelineNode = ({ event, index, isLast }: { event: { year: number; title: string; description: string; icon: LucideIcon; isUpcoming?: boolean; date?: string }; index: number; isLast: boolean }) => {
   const isUpcoming = event.isUpcoming;
   const Icon = event.icon;
 
@@ -163,6 +164,13 @@ const TimelineNode = ({ event, index, isLast }: { event: { year: number; title: 
                 {event.title}
               </h3>
               <p className="text-sm leading-relaxed text-slate-300">{event.description}</p>
+              {event.date && (
+                <div className="mt-5 mb-2 flex w-full justify-center">
+                  <div className="inline-block rounded-lg border border-cyan-400/50 bg-cyan-400/10 px-5 py-2 text-xl font-black tracking-widest text-cyan-200 shadow-[0_0_15px_rgba(34,211,238,0.2)]">
+                    {event.date}
+                  </div>
+                </div>
+              )}
             </div>
             {isUpcoming && (
               <motion.div
@@ -170,7 +178,7 @@ const TimelineNode = ({ event, index, isLast }: { event: { year: number; title: 
                 transition={{ duration: 2, repeat: Infinity }}
                 className="px-3 py-1 rounded-lg bg-gradient-to-r from-cyan-500/30 to-blue-500/30 border border-cyan-400/50 text-xs font-black text-cyan-200 whitespace-nowrap mt-1"
               >
-                COMING SOON
+                On Going
               </motion.div>
             )}
           </div>

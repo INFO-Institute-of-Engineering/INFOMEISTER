@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Medal, Trophy } from 'lucide-react';
+import Image from 'next/image';
 import { DynamicPlaceholder } from '@/components/dynamic-placeholder';
 
 const PlaceholderImage = ({ src, alt, index }: { src?: string; alt?: string; index: number }) => (
@@ -16,7 +17,7 @@ const PlaceholderImage = ({ src, alt, index }: { src?: string; alt?: string; ind
   >
     {src ? (
       <>
-        <motion.img src={src} alt={alt} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+        <Image src={src!} alt={alt ?? ''} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition duration-700 group-hover:scale-110" />
         <motion.span
           aria-hidden="true"
           initial={{ x: '-140%' }}
@@ -132,14 +133,14 @@ export function Trisquadathon1Section() {
                   <div key={i} className="aspect-square">
                     <PlaceholderImage
                       src={{
-                        0: '/Trisquadathon-1.0-Event Organization1.jpg.jpeg',
+                        0: '/Trisquadathon-1.0-Event Organization1.jpg',
                         1: '/Trisquadathon-1.0-Event Organization2.jpg.jpeg',
                         2: '/Trisquadathon-1.0-Event Organization3.jpg.jpeg',
                         3: '/Trisquadathon-1.0-Event Organization4.jpg.jpeg',
                         4: '/Trisquadathon-1.0-Event Organization5.jpg.jpeg',
                         5: '/Trisquadathon-1.0-Event Organization6.jpg.jpeg',
                         6: '/Trisquadathon-1.0-Event Organization7.jpg.jpeg',
-                        7: '/Trisquadathon-1.0-Event Organization8.jpg.jpeg',
+                        7: '/Trisquadathon-1.0-Event Organization8.jpg.jpg',
                         8: '/Trisquadathon-1.0-Event Organization9.jpg.jpeg',
                       }[i]}
                       alt={`Trisquadathon 1.0 event organization ${i + 1}`}

@@ -27,7 +27,7 @@ const StaffCard = ({ name, role, index, image }: StaffMember & { index: number; 
     <div className="relative flex h-36 w-full items-center justify-center overflow-hidden border-b border-white/10 bg-gradient-to-br from-cyan-400/10 to-blue-500/10">
       <div className="relative h-28 w-28 overflow-hidden rounded-full border-2 border-cyan-200/60 bg-gradient-to-br from-cyan-100 via-white to-blue-200 shadow-[0_0_24px_rgba(34,211,238,0.22)]">
         {image ? (
-          <Image src={image} alt={`${name} profile`} fill priority sizes="112px" className="object-contain object-center mix-blend-multiply" />
+          <Image src={image} alt={`${name} profile`} fill sizes="112px" className="object-contain object-center mix-blend-multiply" />
         ) : (
           <div className="flex h-full items-center justify-center text-4xl font-black text-blue-300/50">{name.charAt(0)}</div>
         )}
