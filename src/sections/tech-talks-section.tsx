@@ -18,7 +18,7 @@ const PlaceholderImage = ({ title, size = 'default', src, alt, index = 0, animat
     }`}
   >
     {src ? (
-      <Image src={src!} alt={alt ?? ''} fill sizes={size === 'large' ? '(max-width: 640px) 100vw, 90vw' : '(max-width: 640px) 100vw, 25vw'} className={`object-cover transition duration-700 ${animated ? 'group-hover:scale-110' : ''}`} />
+      <Image src={src!} alt={alt ?? ''} fill sizes={size === 'large' ? '(max-width: 640px) 100vw, 90vw' : '(max-width: 640px) 100vw, 25vw'} quality={70} className={`object-cover transition duration-700 ${animated ? 'group-hover:scale-110' : ''}`} />
     ) : (
       <DynamicPlaceholder title={title} />
     )}

@@ -15,7 +15,7 @@ const GalleryPlaceholder = ({ index, src, alt }: { index: number; src?: string; 
     className="group glass relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 transition-all duration-300 hover:border-cyan-300/40 hover:shadow-[0_0_35px_rgba(34,211,238,0.16)]"
   >
     {src ? (
-      <Image src={src!} alt={alt ?? ''} fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover transition duration-500 group-hover:scale-105" />
+      <Image src={src!} alt={alt ?? ''} fill sizes="(max-width: 640px) 100vw, 33vw" quality={70} className="object-cover transition duration-500 group-hover:scale-105" />
     ) : (
       <DynamicPlaceholder title="Photo coming soon" />
     )}

@@ -14,7 +14,7 @@ const PlaceholderImage = ({ src, alt, contain = false }: { src?: string; alt?: s
     className="h-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/50 to-slate-800/30 flex flex-col items-center justify-center gap-4 backdrop-blur-sm hover:border-cyan-300/40 transition"
   >
     {src ? (
-      <Image src={src!} alt={alt ?? ''} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className={`${contain ? 'object-contain bg-slate-950/35' : 'object-cover'}`} />
+      <Image src={src!} alt={alt ?? ''} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={70} className={`${contain ? 'object-contain bg-slate-950/35' : 'object-cover'}`} />
     ) : (
       <DynamicPlaceholder title="Recognition photo coming soon" />
     )}
