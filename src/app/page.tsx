@@ -11,7 +11,6 @@ import { LegacyTimelineSection } from '@/sections/legacy-timeline-section';
 import { Trisquadathon1Section } from '@/sections/trisquadathon-1-section';
 import { Trisquadathon2Section } from '@/sections/trisquadathon-2-section';
 import { TechTalksSection } from '@/sections/tech-talks-section';
-import { HallOfFameSection } from '@/sections/hall-of-fame-section';
 import { ExecutiveBoardsArchiveSection } from '@/sections/executive-boards-archive-section';
 import { StaffCoordinatorsSection } from '@/sections/staff-coordinators-section';
 import { GallerySection } from '@/sections/gallery-section';
@@ -38,7 +37,6 @@ export default function HomePage() {
         <LegacyTimelineSection />
         <Trisquadathon1Section />
         <TechTalksSection />
-        <HallOfFameSection />
         <StaffCoordinatorsSection />
         <ExecutiveBoardsArchiveSection />
         <GallerySection />
