@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 
-const PARTICLE_COUNT = 8;
-const LERP_SPEEDS = [0.38, 0.30, 0.24, 0.19, 0.15, 0.12, 0.09, 0.07];
+const PARTICLE_COUNT = 4;
+const LERP_SPEEDS = [0.22, 0.16, 0.12, 0.08];
 
 export function CustomCursor() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -12,6 +12,15 @@ export function CustomCursor() {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+
+    if (prefersReducedMotion || isTouchDevice) {
+      container.style.display = 'none';
+      document.documentElement.classList.remove('has-custom-cursor');
+      return;
+    }
 
     document.documentElement.classList.add('has-custom-cursor');
 

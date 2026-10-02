@@ -76,7 +76,7 @@ export function TrisquadathonBannerSection() {
                 relative will-change-transform
               "
             >
-              <Image src={banner.src} alt={banner.alt} fill sizes="(max-width: 640px) 72vw, (max-width: 1024px) 40vw, 20vw" className="rounded-xl object-contain" />
+              <Image src={banner.src} alt={banner.alt} fill sizes="(max-width: 640px) 72vw, (max-width: 1024px) 40vw, 20vw" quality={70} className="rounded-xl object-contain" />
             </div>
           ))}
         </div>

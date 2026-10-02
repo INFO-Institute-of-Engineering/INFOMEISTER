@@ -17,7 +17,7 @@ const PlaceholderImage = ({ src, alt, index }: { src?: string; alt?: string; ind
   >
     {src ? (
       <>
-        <Image src={src!} alt={alt ?? ''} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition duration-700 group-hover:scale-110" />
+        <Image src={src!} alt={alt ?? ''} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={70} className="object-cover transition duration-700 group-hover:scale-110" />
         <motion.span
           aria-hidden="true"
           initial={{ x: '-140%' }}

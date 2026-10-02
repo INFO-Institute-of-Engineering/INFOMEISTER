@@ -57,10 +57,33 @@ body {
     linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
   color: white;
   font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html,
+body,
+a,
+button,
+[role="button"],
+.glass,
+.neon-border,
+.tab-pill {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  transition-duration: 220ms;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
@@ -87,20 +110,16 @@ body {
 
 /* Leader dot — largest, brightest cyan */
 .cursor-particle:nth-child(1) {
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   background: #67e8f9;
-  box-shadow: 0 0 10px #22d3ee, 0 0 22px rgba(34,211,238,0.7);
+  box-shadow: 0 0 10px #22d3ee, 0 0 20px rgba(34,211,238,0.65);
 }
 
-/* Trailing particles — shrink and fade progressively */
-.cursor-particle:nth-child(2) { width: 10px; height: 10px; background: rgba(103,232,249,0.85); box-shadow: 0 0 8px rgba(34,211,238,0.6); }
-.cursor-particle:nth-child(3) { width:  8px; height:  8px; background: rgba(103,232,249,0.70); box-shadow: 0 0 7px rgba(34,211,238,0.45); }
-.cursor-particle:nth-child(4) { width:  7px; height:  7px; background: rgba(103,232,249,0.55); box-shadow: 0 0 6px rgba(34,211,238,0.35); }
-.cursor-particle:nth-child(5) { width:  5px; height:  5px; background: rgba(139,92,246,0.65); box-shadow: 0 0 6px rgba(139,92,246,0.50); }
-.cursor-particle:nth-child(6) { width:  4px; height:  4px; background: rgba(139,92,246,0.50); box-shadow: 0 0 5px rgba(139,92,246,0.35); }
-.cursor-particle:nth-child(7) { width:  3px; height:  3px; background: rgba(167,139,250,0.40); box-shadow: 0 0 4px rgba(167,139,250,0.30); }
-.cursor-particle:nth-child(8) { width:  2px; height:  2px; background: rgba(167,139,250,0.25); box-shadow: 0 0 3px rgba(167,139,250,0.20); }
+/* Trailing particles — lower contrast and movement to keep the cursor fluid */
+.cursor-particle:nth-child(2) { width: 9px; height: 9px; background: rgba(103,232,249,0.72); box-shadow: 0 0 7px rgba(34,211,238,0.45); }
+.cursor-particle:nth-child(3) { width:  7px; height:  7px; background: rgba(103,232,249,0.58); box-shadow: 0 0 6px rgba(34,211,238,0.34); }
+.cursor-particle:nth-child(4) { width:  5px; height:  5px; background: rgba(139,92,246,0.52); box-shadow: 0 0 5px rgba(139,92,246,0.30); }
 
 /* Hover state — all particles bloom to vibrant violet */
 .is-hovering .cursor-particle:nth-child(1) {
