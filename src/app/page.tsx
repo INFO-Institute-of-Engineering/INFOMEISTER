@@ -6,10 +6,12 @@ import { TrisquadathonBannerSection } from '@/sections/trisquadathon-banner-sect
 import { VisionMissionSection } from '@/sections/vision-mission-section';
 import { DomainsSection } from '@/sections/domains-section';
 import { AchievementsSection } from '@/sections/achievements-section';
+import { UpcomingEventsSection } from '@/sections/upcoming-events-section';
 import { LegacyTimelineSection } from '@/sections/legacy-timeline-section';
 import { Trisquadathon1Section } from '@/sections/trisquadathon-1-section';
 import { Trisquadathon2Section } from '@/sections/trisquadathon-2-section';
 import { TechTalksSection } from '@/sections/tech-talks-section';
+import { HallOfFameSection } from '@/sections/hall-of-fame-section';
 import { ExecutiveBoardsArchiveSection } from '@/sections/executive-boards-archive-section';
 import { StaffCoordinatorsSection } from '@/sections/staff-coordinators-section';
 import { GallerySection } from '@/sections/gallery-section';
@@ -32,9 +34,11 @@ export default function HomePage() {
         <VisionMissionSection />
         <AchievementsSection />
         <DomainsSection />
+        <UpcomingEventsSection />
         <LegacyTimelineSection />
         <Trisquadathon1Section />
         <TechTalksSection />
+        <HallOfFameSection />
         <StaffCoordinatorsSection />
         <ExecutiveBoardsArchiveSection />
         <GallerySection />
