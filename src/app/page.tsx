@@ -6,7 +6,6 @@ import { TrisquadathonBannerSection } from '@/sections/trisquadathon-banner-sect
 import { VisionMissionSection } from '@/sections/vision-mission-section';
 import { DomainsSection } from '@/sections/domains-section';
 import { AchievementsSection } from '@/sections/achievements-section';
-import { UpcomingEventsSection } from '@/sections/upcoming-events-section';
 import { LegacyTimelineSection } from '@/sections/legacy-timeline-section';
 import { Trisquadathon1Section } from '@/sections/trisquadathon-1-section';
 import { Trisquadathon2Section } from '@/sections/trisquadathon-2-section';
@@ -16,10 +15,12 @@ import { StaffCoordinatorsSection } from '@/sections/staff-coordinators-section'
 import { GallerySection } from '@/sections/gallery-section';
 import { ContactSection } from '@/sections/contact-section';
 import { MifiAssistantLoader } from '@/components/mifi-assistant-loader';
+import { CustomCursor } from '@/components/custom-cursor';
 
 export default function HomePage() {
   return (
     <div className="relative min-h-screen bg-bg text-white">
+      <CustomCursor />
       <BackgroundSystem />
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.28),_transparent_36%),radial-gradient(circle_at_right,_rgba(56,189,248,0.18),_transparent_30%)]" />
       <div className="pointer-events-none fixed inset-0 -z-10 bg-grid opacity-30" />
@@ -33,7 +34,6 @@ export default function HomePage() {
         <VisionMissionSection />
         <AchievementsSection />
         <DomainsSection />
-        <UpcomingEventsSection />
         <LegacyTimelineSection />
         <Trisquadathon1Section />
         <TechTalksSection />
@@ -47,4 +47,5 @@ export default function HomePage() {
     </div>
   );
 }
+
 
