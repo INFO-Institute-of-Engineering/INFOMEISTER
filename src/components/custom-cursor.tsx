@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 const PARTICLE_COUNT = 8;
 const LERP_SPEEDS = [0.38, 0.30, 0.24, 0.19, 0.15, 0.12, 0.09, 0.07];
@@ -8,18 +8,12 @@ const LERP_SPEEDS = [0.38, 0.30, 0.24, 0.19, 0.15, 0.12, 0.09, 0.07];
 export function CustomCursor() {
   const containerRef = useRef<HTMLDivElement>(null);
   const particleRefs = useRef<HTMLSpanElement[]>([]);
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // Only run on desktop/laptop with a fine pointer (mouse/trackpad)
-    if (typeof window === 'undefined') return;
-    if (window.matchMedia('(pointer: coarse)').matches) return;
-
-    setIsMounted(true);
-    document.documentElement.classList.add('has-custom-cursor');
-
     const container = containerRef.current;
     if (!container) return;
+
+    document.documentElement.classList.add('has-custom-cursor');
 
     const positions = Array.from({ length: PARTICLE_COUNT }, () => ({
       x: -200,
@@ -56,13 +50,13 @@ export function CustomCursor() {
 
     rafId = requestAnimationFrame(animateParticles);
 
-    const onPointerMove = (e: PointerEvent) => {
+    const onPointerMove = (e: MouseEvent | PointerEvent) => {
       targetX = e.clientX;
       targetY = e.clientY;
       container.classList.add('is-active');
     };
 
-    const onPointerDown = (e: PointerEvent) => {
+    const onPointerDown = (e: MouseEvent | PointerEvent) => {
       targetX = e.clientX;
       targetY = e.clientY;
       if (releaseTimer) clearTimeout(releaseTimer);
@@ -76,7 +70,7 @@ export function CustomCursor() {
       releaseTimer = setTimeout(() => container.classList.remove('is-active'), 700);
     };
 
-    const onPointerOver = (e: PointerEvent) => {
+    const onPointerOver = (e: MouseEvent) => {
       const el = e.target;
       container.classList.toggle(
         'is-hovering',
@@ -84,7 +78,7 @@ export function CustomCursor() {
       );
     };
 
-    const onPointerOut = (e: PointerEvent) => {
+    const onPointerOut = (e: MouseEvent) => {
       const rel = e.relatedTarget;
       container.classList.toggle(
         'is-hovering',
@@ -93,10 +87,13 @@ export function CustomCursor() {
     };
 
     window.addEventListener('pointermove', onPointerMove, { passive: true });
+    window.addEventListener('mousemove', onPointerMove, { passive: true });
     window.addEventListener('pointerdown', onPointerDown, { passive: true });
+    window.addEventListener('mousedown', onPointerDown, { passive: true });
     window.addEventListener('pointerup', onPointerUp, { passive: true });
-    window.addEventListener('pointerover', onPointerOver, { passive: true });
-    window.addEventListener('pointerout', onPointerOut, { passive: true });
+    window.addEventListener('mouseup', onPointerUp, { passive: true });
+    window.addEventListener('mouseover', onPointerOver, { passive: true });
+    window.addEventListener('mouseout', onPointerOut, { passive: true });
 
     return () => {
       cancelAnimationFrame(rafId);
@@ -104,17 +101,22 @@ export function CustomCursor() {
       if (releaseTimer) clearTimeout(releaseTimer);
       if (clickTimer) clearTimeout(clickTimer);
       window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('mousemove', onPointerMove);
       window.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('mousedown', onPointerDown);
       window.removeEventListener('pointerup', onPointerUp);
-      window.removeEventListener('pointerover', onPointerOver);
-      window.removeEventListener('pointerout', onPointerOut);
+      window.removeEventListener('mouseup', onPointerUp);
+      window.removeEventListener('mouseover', onPointerOver);
+      window.removeEventListener('mouseout', onPointerOut);
     };
   }, []);
 
-  if (!isMounted) return null;
-
   return (
-    <div ref={containerRef} aria-hidden="true" className="pointer-events-none fixed inset-0 z-[99999]">
+    <div
+      ref={containerRef}
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 z-[99999]"
+    >
       {Array.from({ length: PARTICLE_COUNT }).map((_, i) => (
         <span
           key={i}
