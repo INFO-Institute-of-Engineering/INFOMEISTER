@@ -2,22 +2,24 @@
 
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 import { useRef } from 'react';
 
 const banners = [
   { src: '/talkthon-banner.jpg.jpeg', alt: 'Talkathon event banner' },
-  { src: '/newtri2.0banner.jpg.jpeg', alt: 'Trisquadathon 2.0 coming soon banner' },
+  { src: '/sihawarness.jpeg', alt: 'Smart India Hackathon awareness workshop poster' },
+  { src: '/sihIntAwarness.jpeg', alt: 'ITNT Tamil Nadu Technology Hub awareness programme poster' },
   { src: '/2.png', alt: 'TechTalk 2.0 coming soon poster' },
-  { src: '/3.png', alt: 'Smart India Hackathon awareness workshop poster' },
-  { src: '/4.png', alt: 'ITNT Tamil Nadu Technology Hub awareness programme poster' },
 ];
 
 export function TrisquadathonBannerSection() {
   const bannerRailRef = useRef<HTMLDivElement>(null);
 
   const scrollBanners = (direction: 'left' | 'right') => {
-    bannerRailRef.current?.scrollBy({
-      left: direction === 'left' ? -360 : 360,
+    if (!bannerRailRef.current) return;
+    const cardWidth = bannerRailRef.current.querySelector('div')?.offsetWidth ?? 280;
+    bannerRailRef.current.scrollBy({
+      left: direction === 'left' ? -(cardWidth + 16) : cardWidth + 16,
       behavior: 'smooth',
     });
   };
@@ -25,8 +27,11 @@ export function TrisquadathonBannerSection() {
   return (
     <section className="relative mx-auto max-w-7xl px-4 pb-8 md:px-8 md:pb-10">
       <div className="relative z-10 mt-4">
+        {/* Fade edges — desktop only */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-16 bg-gradient-to-r from-bg to-transparent lg:block" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-16 bg-gradient-to-l from-bg to-transparent lg:block" />
+
+        {/* Prev / Next arrows — desktop only */}
         <button
           type="button"
           onClick={() => scrollBanners('left')}
@@ -44,7 +49,19 @@ export function TrisquadathonBannerSection() {
           <ChevronRight size={20} />
         </button>
 
-        <div ref={bannerRailRef} className="flex snap-x gap-4 overflow-x-auto pb-2 lg:grid lg:grid-cols-5 lg:overflow-visible lg:scroll-smooth">
+        {/*
+          Mobile / tablet: horizontal snap-scroll carousel (touch-friendly, no page overflow)
+          Desktop (lg+): CSS grid layout
+        */}
+        <div
+          ref={bannerRailRef}
+          className="
+            flex gap-4 overflow-x-auto overscroll-x-contain pb-3
+            snap-x snap-mandatory scroll-smooth
+            [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+            lg:grid lg:grid-cols-5 lg:overflow-visible
+          "
+        >
           {banners.map((banner, index) => (
             <motion.div
               key={banner.src}
@@ -58,9 +75,19 @@ export function TrisquadathonBannerSection() {
                 y: { duration: 5 + index * 0.35, repeat: Infinity, ease: 'easeInOut', delay: index * 0.18 },
               }}
               whileHover={{ y: -8, scale: 1.025 }}
-              className="aspect-[3/4] min-w-[16rem] snap-start overflow-hidden rounded-2xl border border-cyan-300/40 bg-slate-950/65 p-1 shadow-[0_0_28px_rgba(34,211,238,0.16)] transition-shadow hover:border-cyan-100/75 hover:shadow-[0_0_38px_rgba(34,211,238,0.3)] sm:min-w-[19rem] lg:min-w-0"
+              /* Mobile: show ~1.1 cards so user knows it scrolls. Tablet: wider. Desktop: grid handles it. */
+              className="
+                aspect-[3/4] snap-start shrink-0
+                w-[72vw] max-w-[16rem]
+                sm:w-[40vw] sm:max-w-[18rem]
+                lg:w-auto lg:max-w-none
+                overflow-hidden rounded-2xl border border-cyan-300/40 bg-slate-950/65 p-1
+                shadow-[0_0_28px_rgba(34,211,238,0.16)] transition-shadow
+                hover:border-cyan-100/75 hover:shadow-[0_0_38px_rgba(34,211,238,0.3)]
+                relative
+              "
             >
-              <img src={banner.src} alt={banner.alt} className="h-full w-full rounded-xl object-contain" />
+              <Image src={banner.src} alt={banner.alt} fill sizes="(max-width: 640px) 72vw, (max-width: 1024px) 40vw, 20vw" className="rounded-xl object-contain" />
             </motion.div>
           ))}
         </div>
@@ -68,3 +95,4 @@ export function TrisquadathonBannerSection() {
     </section>
   );
 }
+

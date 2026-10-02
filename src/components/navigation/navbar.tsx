@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
@@ -19,19 +20,20 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#05070F]/75 backdrop-blur-2xl">
+    <header className="site-header fixed inset-x-0 top-0 z-50 isolate border-b border-white/10 bg-[#05070F]/90 supports-[backdrop-filter]:bg-[#05070F]/75 supports-[backdrop-filter]:backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:gap-3 sm:px-4 md:px-8">
         <Link
           href="#home"
           className="flex min-w-0 max-w-[78vw] items-center gap-2 rounded-full border border-blue-400/20 bg-gradient-to-r from-blue-500/12 via-sky-400/10 to-violet-500/12 px-2 py-2 pr-2 shadow-[0_0_30px_rgba(59,130,246,0.14)] sm:max-w-none sm:gap-3 sm:pr-3"
         >
-          <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-[20%] border border-blue-300/40 bg-[#071b30] shadow-[0_0_20px_rgba(96,165,250,0.5)]">
-            <img
-              src="/Info%20logo%20dark%20bblue.png"
-              alt="INFOMEISTER association logo"
-              className="h-full w-full object-cover"
-            />
-          </div>
+          <Image
+            src="/infomeister-logo.png"
+            alt="INFOMEISTER association logo"
+            width={48}
+            height={48}
+            priority
+            className="h-12 w-12 shrink-0 object-contain drop-shadow-[0_0_14px_rgba(96,165,250,0.35)]"
+          />
           <span className="hidden truncate bg-gradient-to-r from-white via-sky-100 to-violet-200 bg-clip-text text-[9px] font-bold uppercase tracking-[0.16em] text-transparent sm:block sm:text-[10px] md:text-xs">
             United by passion, Driven by Excellence
           </span>

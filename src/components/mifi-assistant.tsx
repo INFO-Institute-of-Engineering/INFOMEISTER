@@ -9,7 +9,7 @@ type ChatMessage = {
   text: string;
 };
 
-const quickQuestions = ['Who is the president?', 'When is Talkathon?', 'Where are you located?'];
+const quickQuestions = ['When is Trisquadathon 2.0?', 'How do I register?', 'Who is the president?'];
 
 const initialMessage: ChatMessage = {
   id: 1,
@@ -25,7 +25,8 @@ function getReply(question: string) {
   if (normalizedQuestion.includes('location') || normalizedQuestion.includes('where')) return 'INFOMEISTER is based at Info Institute of Engineering, Coimbatore, Tamil Nadu.';
   if (normalizedQuestion.includes('dean') || normalizedQuestion.includes('academic')) return 'The 2026 Dean Academics is Dr. K. Baskaran.';
   if (normalizedQuestion.includes('event')) return 'Upcoming events include Talkathon, Trisquadathon 2.0 Coming Soon, Tech Talk, Seminar, Webinar, and Bootcamp.';
-  if (normalizedQuestion.includes('trisquadathon')) return 'Trisquadathon 2.0 is coming soon. Watch the Upcoming Events section for updates.';
+  if (normalizedQuestion.includes('trisquadathon') || normalizedQuestion.includes('when is trisquadathon')) return 'Trisquadathon 2.0 is happening on October 29, 2026! It will be bigger, better, and more competitive.';
+  if (normalizedQuestion.includes('register') || normalizedQuestion.includes('registration')) return 'You can register for Trisquadathon 2.0 by clicking the solid cyan "Register Now" button in the Events section on our website!';
   if (normalizedQuestion.includes('contact') || normalizedQuestion.includes('email')) return 'You can contact INFOMEISTER at infomeistercse@gmail.com.';
   if (normalizedQuestion.includes('domain') || normalizedQuestion.includes('speciali') || normalizedQuestion.includes('technical pillar')) return 'INFOMEISTER covers six domains: AI & Machine Learning, Full-Stack Development, DevOps & Cloud, Product & Design, Data Engineering, and Cybersecurity.';
   if (normalizedQuestion.includes('staff') || normalizedQuestion.includes('hod') || normalizedQuestion.includes('head of department')) return 'The HoD is Dr. G. Selvavinayagam. 2026 staff coordinators are Mrs. Saranya A, Mrs. Gokila P, and Mr. Nagarasan M. In 2025, the coordinators were Mrs. Saranya A, Mrs. Saranya R, and Mr. Nagarasan M.';
@@ -41,8 +42,8 @@ function getReply(question: string) {
   return 'I can help with INFOMEISTER events, executive boards, staff, location, contact details, and general technology questions. Try asking about Talkathon or the President.';
 }
 
-export function MifiAssistant() {
-  const [isOpen, setIsOpen] = useState(false);
+export function MifiAssistant({ initialOpen = false, onClose }: { initialOpen?: boolean; onClose?: () => void }) {
+  const [isOpen, setIsOpen] = useState(initialOpen);
   const [question, setQuestion] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
@@ -67,20 +68,23 @@ export function MifiAssistant() {
     const timeout = window.setTimeout(() => controller.abort(), 3500);
 
     try {
-      const response = await fetch('/api/mifi', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: trimmedValue }),
-        signal: controller.signal,
-      });
-      const data = await response.json();
-      const liveContext = typeof data.context === 'string' ? data.context : '';
-      if (liveContext) {
-        setMessages((currentMessages) => currentMessages.map((message) => (
-          message.id === assistantMessageId
-            ? { ...message, text: `${localReply}\n\nLive Trisquadathon update: ${liveContext}` }
-            : message
-        )));
+      const isAboutEvent = trimmedValue.toLowerCase().includes('trisquadathon') || trimmedValue.toLowerCase().includes('hackathon');
+      if (isAboutEvent) {
+        const response = await fetch('/api/mifi', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: trimmedValue }),
+          signal: controller.signal,
+        });
+        const data = await response.json();
+        const liveContext = typeof data.context === 'string' ? data.context : '';
+        if (liveContext) {
+          setMessages((currentMessages) => currentMessages.map((message) => (
+            message.id === assistantMessageId
+              ? { ...message, text: `${localReply}\n\nLive Trisquadathon update: ${liveContext}` }
+              : message
+          )));
+        }
       }
     } catch {
       // The local answer is already visible if the live source is unavailable.
@@ -114,7 +118,7 @@ export function MifiAssistant() {
                   </div>
                 </div>
               </div>
-              <button type="button" onClick={() => setIsOpen(false)} aria-label="Close MIFI assistant" className="rounded-xl border border-white/10 p-2 text-slate-400 transition hover:border-white/20 hover:bg-white/10 hover:text-white">
+              <button type="button" onClick={() => { setIsOpen(false); onClose?.(); }} aria-label="Close MIFI assistant" className="rounded-xl border border-white/10 p-2 text-slate-400 transition hover:border-white/20 hover:bg-white/10 hover:text-white">
                 <X size={17} />
               </button>
             </div>
@@ -160,14 +164,16 @@ export function MifiAssistant() {
         </div>
       )}
 
-      <button type="button" onClick={() => setIsOpen((value) => !value)} aria-label={isOpen ? 'Close MIFI assistant' : 'Open MIFI assistant'} className="pointer-events-auto group flex items-center gap-2 rounded-2xl border border-cyan-200/40 bg-[#06101f]/95 px-3.5 py-3 text-cyan-100 shadow-[0_0_30px_rgba(34,211,238,0.28)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-cyan-200/70">
-        <span className="relative flex h-7 w-7 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-300/25 to-blue-500/25">
-          {isOpen ? <X size={17} /> : <MessageCircle size={17} />}
-          {!isOpen && <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_8px_rgba(110,231,183,0.9)]" />}
-        </span>
-        <span className="text-xs font-black uppercase tracking-[0.16em]">Ask MIFI</span>
-        <Sparkles size={13} className="text-cyan-300 transition group-hover:rotate-12" />
-      </button>
+      {!isOpen && (
+        <button type="button" onClick={() => setIsOpen(true)} aria-label="Open MIFI assistant" className="pointer-events-auto group flex items-center gap-2 rounded-2xl border border-cyan-200/40 bg-[#06101f]/95 px-3.5 py-3 text-cyan-100 shadow-[0_0_30px_rgba(34,211,238,0.28)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-cyan-200/70">
+          <span className="relative flex h-7 w-7 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-300/25 to-blue-500/25">
+            <MessageCircle size={17} />
+            <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_8px_rgba(110,231,183,0.9)]" />
+          </span>
+          <span className="text-xs font-black uppercase tracking-[0.16em]">Ask MIFI</span>
+          <Sparkles size={13} className="text-cyan-300 transition group-hover:rotate-12" />
+        </button>
+      )}
     </div>
   );
 }

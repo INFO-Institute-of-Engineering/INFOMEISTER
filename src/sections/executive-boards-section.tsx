@@ -19,7 +19,6 @@ const BoardMemberCard = ({ name, role, index, image }: { name: string; role: str
           src={image} 
           alt={`${name} profile`} 
           fill 
-          priority 
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-contain object-center"
         />
