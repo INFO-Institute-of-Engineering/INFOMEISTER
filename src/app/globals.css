@@ -26,6 +26,15 @@ html {
   scroll-padding-top: 5.5rem;
 }
 
+@media (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [role="button"] {
+    cursor: none;
+  }
+}
+
 [id] {
   scroll-margin-top: 5.5rem;
 }
