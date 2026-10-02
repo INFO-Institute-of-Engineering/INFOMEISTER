@@ -36,14 +36,6 @@ const getCountdown = (): Countdown => {
   };
 };
 
-const FloatingParticle = ({ delay, duration }: { delay: number; duration: number }) => (
-  <motion.div
-    animate={{ y: [0, -30, 0], x: [0, 20, 0], opacity: [0, 1, 0] }}
-    transition={{ duration, delay, repeat: Infinity }}
-    className="absolute h-2 w-2 rounded-full bg-cyan-400 blur-sm"
-  />
-);
-
 export function Trisquadathon2Section() {
   const [countdown, setCountdown] = useState<Countdown>(DEFAULT_COUNTDOWN);
   const [isClient, setIsClient] = useState(false);
@@ -61,11 +53,10 @@ export function Trisquadathon2Section() {
 
   return (
     <section id="trisquadathon-2" className="relative mx-auto max-w-7xl overflow-hidden px-3 pb-12 pt-6 sm:px-4 sm:pb-16 sm:pt-8 md:px-8 md:pb-20 md:pt-10">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(circle_at_50%_0%,_rgba(34,211,238,0.26),_transparent_50%),radial-gradient(circle_at_0%_100%,_rgba(37,99,235,0.2),_transparent_40%)] sm:h-[520px]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(circle_at_50%_0%,_rgba(34,211,238,0.24),_transparent_50%),radial-gradient(circle_at_0%_100%,_rgba(37,99,235,0.18),_transparent_40%)] sm:h-[520px]" />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, index) => (
-          <FloatingParticle key={index} delay={index * 0.2} duration={3 + (index % 4) * 0.5} />
-        ))}
+        <div className="absolute left-1/4 top-1/4 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl will-change-transform" />
+        <div className="absolute right-1/4 bottom-1/3 h-80 w-80 rounded-full bg-blue-600/10 blur-3xl will-change-transform" />
       </div>
 
       <div className="relative z-10 text-center">

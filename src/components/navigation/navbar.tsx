@@ -10,7 +10,7 @@ const navItems = [
   { label: 'About', href: '#about' },
   { label: 'Vision & Mission', href: '#vision' },
   { label: 'Domains', href: '#domains' },
-  { label: 'Events', href: '#events' },
+  { label: 'Events', href: '#trisquadathon-2' },
   { label: 'Executive Boards', href: '#boards' },
   { label: 'Gallery', href: '#gallery' },
   { label: 'Contact', href: '#contact' },

@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { useRef } from 'react';
@@ -62,19 +61,9 @@ export function TrisquadathonBannerSection() {
             lg:grid lg:grid-cols-5 lg:overflow-visible
           "
         >
-          {banners.map((banner, index) => (
-            <motion.div
+          {banners.map((banner) => (
+            <div
               key={banner.src}
-              initial={{ opacity: 0, y: 18, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              animate={{ y: [0, index % 2 === 0 ? -5 : 4, 0] }}
-              transition={{
-                opacity: { duration: 0.5, delay: index * 0.08 },
-                scale: { duration: 0.5, delay: index * 0.08 },
-                y: { duration: 5 + index * 0.35, repeat: Infinity, ease: 'easeInOut', delay: index * 0.18 },
-              }}
-              whileHover={{ y: -8, scale: 1.025 }}
               /* Mobile: show ~1.1 cards so user knows it scrolls. Tablet: wider. Desktop: grid handles it. */
               className="
                 aspect-[3/4] snap-start shrink-0
@@ -82,13 +71,13 @@ export function TrisquadathonBannerSection() {
                 sm:w-[40vw] sm:max-w-[18rem]
                 lg:w-auto lg:max-w-none
                 overflow-hidden rounded-2xl border border-cyan-300/40 bg-slate-950/65 p-1
-                shadow-[0_0_28px_rgba(34,211,238,0.16)] transition-shadow
-                hover:border-cyan-100/75 hover:shadow-[0_0_38px_rgba(34,211,238,0.3)]
-                relative
+                shadow-[0_0_28px_rgba(34,211,238,0.16)] transition-all duration-300
+                hover:-translate-y-2 hover:scale-[1.02] hover:border-cyan-100/75 hover:shadow-[0_0_38px_rgba(34,211,238,0.3)]
+                relative will-change-transform
               "
             >
               <Image src={banner.src} alt={banner.alt} fill sizes="(max-width: 640px) 72vw, (max-width: 1024px) 40vw, 20vw" className="rounded-xl object-contain" />
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

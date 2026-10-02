@@ -6,7 +6,6 @@ import { TrisquadathonBannerSection } from '@/sections/trisquadathon-banner-sect
 import { VisionMissionSection } from '@/sections/vision-mission-section';
 import { DomainsSection } from '@/sections/domains-section';
 import { AchievementsSection } from '@/sections/achievements-section';
-import { UpcomingEventsSection } from '@/sections/upcoming-events-section';
 import { LegacyTimelineSection } from '@/sections/legacy-timeline-section';
 import { Trisquadathon1Section } from '@/sections/trisquadathon-1-section';
 import { Trisquadathon2Section } from '@/sections/trisquadathon-2-section';
@@ -16,7 +15,6 @@ import { StaffCoordinatorsSection } from '@/sections/staff-coordinators-section'
 import { GallerySection } from '@/sections/gallery-section';
 import { ContactSection } from '@/sections/contact-section';
 import { MifiAssistantLoader } from '@/components/mifi-assistant-loader';
-import { GlobalEventPopup } from '@/components/global-event-popup';
 
 export default function HomePage() {
   return (
@@ -34,7 +32,6 @@ export default function HomePage() {
         <VisionMissionSection />
         <AchievementsSection />
         <DomainsSection />
-        <UpcomingEventsSection />
         <LegacyTimelineSection />
         <Trisquadathon1Section />
         <TechTalksSection />
@@ -44,9 +41,9 @@ export default function HomePage() {
         <ContactSection />
       </main>
 
-      <GlobalEventPopup />
       <MifiAssistantLoader />
     </div>
   );
 }
+
 
