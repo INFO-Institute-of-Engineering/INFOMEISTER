@@ -73,6 +73,70 @@ body {
   background-size: 42px 42px;
 }
 
+/* ── Magnetic Particle Trail Cursor (Optimized 60-120fps GPU) ── */
+.cursor-particle {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  will-change: transform, opacity, width, height, box-shadow;
+  transition: width 220ms ease, height 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
+
+/* Leader dot — largest, brightest cyan */
+.cursor-particle:nth-child(1) {
+  width: 13px;
+  height: 13px;
+  background: #67e8f9;
+  box-shadow: 0 0 10px #22d3ee, 0 0 22px rgba(34,211,238,0.7);
+}
+
+/* Trailing particles — shrink and fade progressively */
+.cursor-particle:nth-child(2) { width: 10px; height: 10px; background: rgba(103,232,249,0.85); box-shadow: 0 0 8px rgba(34,211,238,0.6); }
+.cursor-particle:nth-child(3) { width:  8px; height:  8px; background: rgba(103,232,249,0.70); box-shadow: 0 0 7px rgba(34,211,238,0.45); }
+.cursor-particle:nth-child(4) { width:  7px; height:  7px; background: rgba(103,232,249,0.55); box-shadow: 0 0 6px rgba(34,211,238,0.35); }
+.cursor-particle:nth-child(5) { width:  5px; height:  5px; background: rgba(139,92,246,0.65); box-shadow: 0 0 6px rgba(139,92,246,0.50); }
+.cursor-particle:nth-child(6) { width:  4px; height:  4px; background: rgba(139,92,246,0.50); box-shadow: 0 0 5px rgba(139,92,246,0.35); }
+.cursor-particle:nth-child(7) { width:  3px; height:  3px; background: rgba(167,139,250,0.40); box-shadow: 0 0 4px rgba(167,139,250,0.30); }
+.cursor-particle:nth-child(8) { width:  2px; height:  2px; background: rgba(167,139,250,0.25); box-shadow: 0 0 3px rgba(167,139,250,0.20); }
+
+/* Hover state — all particles bloom to vibrant violet */
+.is-hovering .cursor-particle:nth-child(1) {
+  width: 18px;
+  height: 18px;
+  background: #a78bfa;
+  box-shadow: 0 0 14px #7c3aed, 0 0 30px rgba(124,58,237,0.65);
+}
+.is-hovering .cursor-particle:nth-child(2) { background: rgba(167,139,250,0.90); box-shadow: 0 0 10px rgba(124,58,237,0.55); }
+.is-hovering .cursor-particle:nth-child(3) { background: rgba(167,139,250,0.75); }
+.is-hovering .cursor-particle:nth-child(4) { background: rgba(139,92,246,0.65); }
+.is-hovering .cursor-particle:nth-child(5) { background: rgba(103,232,249,0.55); }
+.is-hovering .cursor-particle:nth-child(6) { background: rgba(103,232,249,0.40); }
+.is-hovering .cursor-particle:nth-child(7) { background: rgba(103,232,249,0.30); }
+.is-hovering .cursor-particle:nth-child(8) { background: rgba(103,232,249,0.18); }
+
+/* Click burst — leader expands + ring radiates */
+.is-clicking .cursor-particle:nth-child(1) {
+  animation: particle-burst 260ms ease-out forwards;
+}
+
+@keyframes particle-burst {
+  0%   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  40%  { transform: translate(-50%, -50%) scale(2.4); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1);   opacity: 1; }
+}
+
+.is-hovering .cursor-particle:nth-child(n+2) {
+  animation: particle-float 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes particle-float {
+  0%   { transform: translate(-50%, -50%) translateY(0px); }
+  100% { transform: translate(-50%, -50%) translateY(-3px); }
+}
+
 /* ── Star Field (Ultra-lightweight pure CSS, 0% CPU, 0 MB GPU RAM) ── */
 .star-field {
   background-image: 
