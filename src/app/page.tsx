@@ -16,6 +16,7 @@ import { StaffCoordinatorsSection } from '@/sections/staff-coordinators-section'
 import { GallerySection } from '@/sections/gallery-section';
 import { ContactSection } from '@/sections/contact-section';
 import { MifiAssistantLoader } from '@/components/mifi-assistant-loader';
+import { GlobalEventPopup } from '@/components/global-event-popup';
 
 export default function HomePage() {
   return (
@@ -43,6 +44,7 @@ export default function HomePage() {
         <ContactSection />
       </main>
 
+      <GlobalEventPopup />
       <MifiAssistantLoader />
     </div>
   );
